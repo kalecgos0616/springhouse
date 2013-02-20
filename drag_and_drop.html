@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
+       Remove this if you use the .htaccess -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <title>drag_and_drop</title>
+  <meta name="description" content="" />
+  <meta name="author" content="bhsiung.tw" />
+
+  <meta name="viewport" content="width=device-width; initial-scale=1.0" />
+
+  <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+  <script>
+  $(function() {
+    $( "#group_a" ).sortable();
+    $( "#group_a" ).disableSelection();
+    
+    $( "#group_b" ).sortable();
+    $( "#group_b" ).disableSelection();
+    
+    $( "#group_a img" ).draggable();
+    $( "#result_a" ).droppable({
+      drop: function( event, ui ) {
+        $(this).data("value", $(ui.draggable).data("value"));
+        check();
+      }
+    });
+    
+    $( "#group_b img" ).draggable();
+    $( "#result_b" ).droppable({
+      drop: function( event, ui ) {
+        $(this).data("value", $(ui.draggable).data("value"));
+        check();
+      }
+    });
+    
+    function check(){
+      if( $("#result_a").data("value") == null|| $("#result_b").data("value")==null){
+        return;
+      }
+      var result = "even";
+      var a = $("#result_a").data("value");
+      var b = $("#result_b").data("value")
+      if(a==0){
+        if(b==1){
+          result = "lose";
+        }
+        if(b==2){
+          result = "win";
+        }
+      }
+      if(a==1){
+        if(b==0){
+          result = "win";
+        }
+        if(b==2){
+          result = "lose";
+        }
+      }
+      if(a==2){
+        if(b==0){
+          result = "lose";
+        }
+        if(b==1){
+          result = "win";
+        }
+      }
+      $("#result").html(result);
+    }
+    
+  });
+  </script>
+  <style>
+    #group_a, #result_a, #group_b, #result_b { float: left; }
+    #result_a, #result_b { width: 130px; height: 250px; border: 1px #000 solid; }
+    #result { font-size: 36px; font-weight: bold; position: absolute; top: 50%; right: 0; }
+  </style>
+</head>
+
+<body>
+  <div id="result">result</div>
+  <div style="overflow: hidden;">
+    <div id="group_a">
+      <img src="image/scissors.png" data-value="0" />
+      <img src="image/rock.png" data-value="1" />
+      <img src="image/paper.png" data-value="2" />
+    </div>
+    <div id="result_a" data-value="null">
+      result_a
+    </div>
+  </div>
+  <div style="overflow: hidden;">
+    <div id="group_b">
+      <img src="image/scissors.png" data-value="0" />
+      <img src="image/rock.png" data-value="1" />
+      <img src="image/paper.png" data-value="2" />
+    </div>
+    <div id="result_b" data-value="null">
+      result_b
+    </div>
+  </div>
+</body>
+</html>

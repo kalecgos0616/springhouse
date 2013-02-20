@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>RWD</title>
+		<meta name="description" content="" />
+		<meta name="author" content="bear" />
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script>
+			$(function(){
+				$('#expand').click(function(){
+					//$("#menu").css("display","block");
+					$('#menu').toggle();
+				})
+				$("#menu_button").click(function() {
+					$('#menu').toggle();
+					$('#menu_button').toggle();
+				});
+				$('#menu').click(function(){
+					if($(window).width()<640){
+						$('#menu').toggle();
+						$('#menu_button').toggle();
+					}
+				})
+				
+				$(window).resize(function(){
+					// desktop
+					if($(window).width()>1024){
+						$("#menu").css("display","block");
+						$("#menu_button").css("display","none");
+					}
+					// tablet
+					if($(window).width()<1024){
+						$("#menu").css("display","none");
+						$("#menu_button").css("display","none");
+					}
+					// mobile
+					if($(window).width()<640){
+						$("#menu").css("display","none");
+						$("#menu_button").css("display","block");
+					}
+				});
+			})
+		</script>
+		<style>
+			/* http://meyerweb.com/eric/tools/css/reset/
+			 v2.0 | 20110126
+			 License: none (public domain)
+			 */
+
+			html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				font-size: 100%;
+				font: inherit;
+				vertical-align: baseline;
+			}
+			/* HTML5 display-role reset for older browsers */
+			article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+				display: block;
+			}
+			body {
+				line-height: 1;
+			}
+			ol, ul {
+				list-style: none;
+			}
+			blockquote, q {
+				quotes: none;
+			}
+			blockquote:before, blockquote:after, q:before, q:after {
+				content: '';
+				content: none;
+			}
+			table {
+				border-collapse: collapse;
+				border-spacing: 0;
+			}
+
+			body, html {
+				height: 100%;
+			}
+			#menu {
+				text-align: center;
+				float: left;
+				width: 200px;
+				height: 100%;
+			}
+			#content {
+				text-align: center;
+			}
+			/* desktop */
+			@media (min-width: 1024px) {
+				#menu {
+					border: 1px #000 solid;
+					display: block;
+				}
+				#content {
+					margin-left: 200px;
+					border: 1px #000 solid;
+					height: 100%;
+				}
+				#expand {
+					display: none;
+				}
+				#menu_button { display: none; }
+			}
+			/* tablet */
+			@media (max-width: 1024px) {
+				#menu {
+					border: 1px #0f0 solid;
+					display: none;
+					position: static;
+				}
+				#content {
+					margin-left: 0;
+				}
+				#expand {
+					float: left;
+					display: block;
+				}
+				#menu_button {
+					display: none;
+				}
+			}
+			/* mobile */
+			@media (max-width: 640px) {
+				#menu {
+					border: 1px #0ff solid;
+					display: block;
+					position: absolute;
+					bottom: 0;
+					width: 100%;
+					height: 100px;
+					display: none;
+				}
+				#content {
+					margin-left: 0;
+				}
+				#expand {
+					display: none;
+				}
+				#menu_button {
+					display: block;
+					border: 1px #0ff solid;
+					display: block;
+					position: absolute;
+					bottom: 0;
+					width: 100%;
+					height: 30px;
+					text-align: center;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="menu">
+			<h1>Menu</h1>
+			<div>
+				item1
+			</div>
+			<div>
+				item2
+			</div>
+			<div>
+				item3
+			</div>
+		</div>
+		<div id="menu_button">menu_button</div>
+		<div id="content">
+			<div id="expand">expand</div>
+			<img src="image/banner.png" />
+			<div id="article">
+				text
+			</div>
+		</div>
+	</body>
+</html>
